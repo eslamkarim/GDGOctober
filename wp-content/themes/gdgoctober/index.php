@@ -1,4 +1,4 @@
-
+﻿
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1008,13 +1008,33 @@
               <span>AC Member</span>           
             </div>
           </div> <!-- end team member -->
+          <div class="col-md-3 col-sm-4 team-wrap">
+            <div class="team-member text-center">
+              <div class="team-img">
+                <div class="overlay">
+                  <div class="team-details text-center">
+                    <p>
+                        Google Developer Group Is Awesome Community
 
+                    </p>
+                    <div class="socials mt-20">
+                      <a href="#"><i class="fa fa-facebook"></i></a>
+                      <a href="#"><i class="fa fa-linkedin"></i></a>
+                      <a href="#"><i class="fa fa-google-plus"></i></a>
+                      <a href="#"><i class="fa fa-envelope"></i></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <h6> <?php print_r($events_meta['location']); ?> </h6>
+              <span>AC Member</span>           
+            </div>
+          </div> <!-- end team member -->
           
 
         </div>
       </div>
     </section> <!-- end our team -->
-      
       <!-- Call to Action -->
     <section class="call-to-action">
       <div class="container">
