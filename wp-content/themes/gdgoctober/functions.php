@@ -1,100 +1,53 @@
 <?php 
-function wpt_event_post_type() {
-	$labels = array(
-		'name'               => __( 'Events' ),
-		'singular_name'      => __( 'Event' ),
-		'add_new'            => __( 'Add New Event' ),
-		'add_new_item'       => __( 'Add New Event' ),
-		'edit_item'          => __( 'Edit Event' ),
-		'new_item'           => __( 'Add New Event' ),
-		'view_item'          => __( 'View Event' )
+
+function create_post_event() {
+	register_post_type( 'events',
+		array(
+			'labels'       => array(
+				'name'       => __( 'Events' ),
+			),
+			'public'       => true,
+			'supports'     => false
+			
+		)
 	);
-	
-	$args = array(
-		'labels'               => $labels,
-		'public'               => true,
-		'capability_type'      => 'post',
-		'rewrite'              => array( 'slug' => 'events' ),
-		'supports'			   => false,
-		'menu_icon'            => 'dashicons-calendar-alt',
+}
+add_action( 'init', 'create_post_event' );
+
+function add_your_fields_meta_box() {
+	add_meta_box(
+		'your_fields_meta_box', // $id
+		'Your Fields', // $title
+		'show_your_fields_meta_box', // $callback
+		'events', // $screen
+		'normal', // $context
+		'high' // $priority
 	);
-	register_post_type( 'events', $args );
 }
-add_action( 'init', 'wpt_event_post_type' );
-function Name()
-{
-	wp_nonce_field(basename(__FILE__), "meta-box-nonce");
-
-    ?>
-        <div>
-            <input name="Name" type="text" value= <?php $event_name ?>>
-        </div>
-    <?php    
-}
-
-function Location()
-{
-	wp_nonce_field(basename(__FILE__), "meta-box-nonce");
-
-    ?>
-        <div>
-            <input name="Location" type="text" value="<?php echo get_post_meta($object->ID, "meta-box-text", true); ?>">
-        </div>
-    <?php    
-}
-function Form()
-{
-	wp_nonce_field(basename(__FILE__), "meta-box-nonce");
-
-    ?>
-        <div>
-            <input name="Form" type="text" value="<?php echo get_post_meta($object->ID, "meta-box-text", true); ?>">
-        </div>
-    <?php    
-}
-function Description()
-{
-	wp_nonce_field(basename(__FILE__), "meta-box-nonce");
-
-    ?>
-        <div>
-            <input name="Description" type="text" value="<?php echo get_post_meta($object->ID, "meta-box-text", true); ?>">
-        </div>
-    <?php    
-}
-
-function add_custom_meta_box()
-{
-	add_meta_box("location", "Location","Location", "Events", "side", "high", null);
-	add_meta_box("form", "Form", "Form", "Events", "side", "high", null);
-	add_meta_box("description", "Description", "Description", "Events", "side", "high", null);
-	add_meta_box("name", "Name", "Name", "Events", "side", "high", null);
-
-
-}
-
-add_action("add_meta_boxes", "add_custom_meta_box");
-function save_event_details(){
+add_action( 'add_meta_boxes', 'add_your_fields_meta_box' );
+function show_your_fields_meta_box() {
 	global $post;
-	  global $wpdb;
-	
-	
-	 if ( get_post_type($post) == 'events'){  
-	
-	  // $post->post_status='publish';
-		  $check=$wpdb->insert( 
-						'events', 
-						array( 
-							'description' => $post['Description'],
-						  'name' => $post['Name'],
-						  'place' => $post['Location'],
-						  'form' => $post['Form']
-						)
-					  );
-	   }
-	 
-	}
-	add_action('publish_event', 'save_event_details');
+	  
+		$meta = get_post_meta( $post->ID, 'your_fields', true ); ?>
 
+	<input type="hidden" name="your_meta_box_nonce" value="<?php echo wp_create_nonce( basename(__FILE__) ); ?>">
+
+    <!-- All fields will go here -->
+	<p>
+	<label for="your_fields[text]">Input Text</label>
+	<br>
+	<input type="text" name="your_fields[text]" id="your_fields[text]" class="regular-text" value="">
+</p>
+	<?php }
+	function save_your_fields_meta( $post_id ) {   
+		
+		$old = get_post_meta( $post_id, 'your_fields', true );
+		$new = $_POST['your_fields'];
+		$link = mysqli_connect("localhost","root","","gdg");
+		mysqli_query($link,"INSERT INTO events (`name`, `description`, `place`, `form`)
+						VALUES ('hi','dao','ldaks','fasok')")or die(mysqli_error($link));
+		
+	}
+	add_action( 'save_post', 'save_your_fields_meta' );
 
 ?>
