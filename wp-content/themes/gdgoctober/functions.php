@@ -38,15 +38,35 @@ function show_your_fields_meta_box() {
 	<br>
 	<input type="text" name="your_fields[text]" id="your_fields[text]" class="regular-text" value="">
 </p>
+
+	<p>
+	<label for="your_fields[location]">Location</label>
+	<br>
+	<input type="text" name="your_fields[location]" id="your_fields[location]" class="regular-text" value="">
+</p>
+<p>
+	<label for="your_fields[description]">Description</label>
+	<br>
+	<input type="text" name="your_fields[description]" id="your_fields[description]" class="regular-text" value="">
+</p>
+<p>
+	<label for="your_fields[form]">Form Link</label>
+	<br>
+	<input type="text" name="your_fields[form]" id="your_fields[form]" class="regular-text" value="">
+</p>
+<p>
+	<label for="your_fields[location]">date</label>
+	<br>
+	<input type="text" name="your_fields[date]" id="your_fields[date]" class="regular-text" value="">
+</p>
 	<?php }
 	function save_your_fields_meta( $post_id ) {   
 		
 		$old = get_post_meta( $post_id, 'your_fields', true );
 		$new = $_POST['your_fields'];
-		$a = $new[text];
 		$link = mysqli_connect("localhost","root","","gdg");
-		mysqli_query($link,"INSERT INTO events ('name' ,'description', 'place', 'form')
-						VALUES ('$a','dao','ldaks','fasok')")or die(mysqli_error($link));
+		mysqli_query($link,'INSERT INTO events (`name`,`place`,`description`,`form`,`date`)
+						VALUES ("'.$new[text].'","'.$new[location].'","'.$new[description].'","'.$new[form].'","'.$new[date].'")')or die(mysqli_error($link));
 		
 	}
 	add_action( 'save_post', 'save_your_fields_meta' );
