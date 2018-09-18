@@ -17,7 +17,7 @@ add_action( 'init', 'create_post_event' );
 function add_your_fields_meta_box() {
 	add_meta_box(
 		'your_fields_meta_box', // $id
-		'Your Fields', // $title
+		'Event', // $title
 		'show_your_fields_meta_box', // $callback
 		'events', // $screen
 		'normal', // $context
@@ -34,7 +34,7 @@ function show_your_fields_meta_box() {
 
     <!-- All fields will go here -->
 	<p>
-	<label for="your_fields[text]">Input Text</label>
+	<label for="your_fields[text]">Name</label>
 	<br>
 	<input type="text" name="your_fields[text]" id="your_fields[text]" class="regular-text" value="">
 </p>
@@ -43,9 +43,10 @@ function show_your_fields_meta_box() {
 		
 		$old = get_post_meta( $post_id, 'your_fields', true );
 		$new = $_POST['your_fields'];
+		$a = $new[text];
 		$link = mysqli_connect("localhost","root","","gdg");
-		mysqli_query($link,"INSERT INTO events (`name`, `description`, `place`, `form`)
-						VALUES ('hi','dao','ldaks','fasok')")or die(mysqli_error($link));
+		mysqli_query($link,"INSERT INTO events ('name' ,'description', 'place', 'form')
+						VALUES ('$a','dao','ldaks','fasok')")or die(mysqli_error($link));
 		
 	}
 	add_action( 'save_post', 'save_your_fields_meta' );
