@@ -272,12 +272,24 @@
           </div>
         </div>
 
-        <div class="row">
-                <h4 class="color-white text-center text-spec">Android Masters</h4>
+<div class="item">
+  <div class="container">
+    <div class="row col-md-6 col-md-offset-3">
+        
+    <div class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s">
+              </div>
+          <h4 class="color-white text-center text-spec">Android Masters</h4>
                         <p class="subheading text-center color-white"><i class="fa fa-calendar-o" aria-hidden="true" style="margin-right: 6px;font-size: 18px;"></i>
                             Soon </p>
                          <a href="https://www.google.com/maps/search/Smart+Village+-+28+Km+by+Cairo+%2F+Alexandria+Desert+Road+-+6+October+-+Building+B148+,+Cairo,+eg/@30.0721421,31.0171291,17z/data=!3m1!4b1?hl=en" target="_blank"><p class="subheading text-center color-white text-spec-edit"><i class="fa fa-map-marker" aria-hidden="true" style="margin-right: 6px;font-size: 18px;"></i> We will be announcing soon </p></a>
+          <div class="customNavigation text-center">
+            <a class="prev"><i class="icon arrow_left"></i></a>
+            <a class="next"><i class="icon arrow_right"></i></a>
+           </div>
 
+    </div>
+  </div>
+</div>     
 
             <!-- Start counter -->
             <!-- 
@@ -314,7 +326,6 @@
                             </div>
             -->
             <!-- end counter -->
-
         </div>
       </div>
     </section> <!-- events -->
